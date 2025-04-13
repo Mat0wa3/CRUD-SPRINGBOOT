@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Productos</title>
+</head>
+<body>
+    <main>
+        <h1>Lista de Productos</h1>
+        <section>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.id}"></td>
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td class="acciones">
+                        <a class="btn btn_editar" th:href="@{/productos/editar/{id} (id=${producto.id})}">Editar</a>
+                        <a class="btn btn_eliminar" th:href="@{/productos/eliminar/{id} (id=${producto.id})}">Eliminar</a>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <a class="btn" style="background-color: #0000FF;" href="/productos/nuevo"> + Añadir Nuevo</a>
+    </main>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font: inherit;
+    }
+
+    html {
+        font-family: sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    main {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .acciones {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn {
+        padding: 4px 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn_editar {
+        background-color: #4CAF50; /* Green */
+    }
+
+    .btn_editar:hover {
+        background-color: #45a049;
+    }
+
+    .btn_eliminar {
+        background-color: #f44336; /* Red */
+    }
+
+    .btn_eliminar:hover {
+        background-color: #da190b;
+    }
+</style>
+</html>
